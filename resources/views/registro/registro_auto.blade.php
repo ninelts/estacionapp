@@ -16,16 +16,18 @@
             <div class="row">
                 <div class="input-field col s6">
                     <select>
-                        <option value="" disabled selected>Elija marca</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                               <option value="" disabled selected>Elija marca</option>
+                        @foreach($marcas as $marcas1) 
+                    <option value="{{$marcas1->nom_marca}}"> {{$marcas1->nom_marca}}</option>
+                        @endforeach
+                 
                     </select>
                     <label>Marca Auto</label>
                 </div>
+
                 <div class="input-field col s6">
                     <select>
-                        <option value="" disabled selected>Elija Tipo</option>
+                    
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                         <option value="3">Option 3</option>

@@ -27,3 +27,11 @@ Route::post('registro/automovil','RegistroAutoController@store') ->name('registr
 
 //Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

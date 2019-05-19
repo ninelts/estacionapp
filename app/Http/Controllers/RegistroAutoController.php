@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\models\auto;
+use App\models\marcas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // Se llama a la clase db
 
 class RegistroAutoController extends Controller
 {
@@ -13,7 +15,12 @@ class RegistroAutoController extends Controller
      */
     public function index()
     {
-        return view('registro.registro_auto');
+
+          $marcas = DB::select('select * from MARCA '); //Tipo 2 
+     //   $marcas = marcas::all(); //Se llama al modelo marcas Tipo 1
+
+        return view('registro.registro_auto' , compact('marcas'));  //Compact trae los datos de la base de datos y los envia a la vista
+
     }
 
     /**
@@ -35,6 +42,8 @@ class RegistroAutoController extends Controller
     public function store(Request $request)
     {
         $auto = new auto();
+
+
     }
 
     /**
