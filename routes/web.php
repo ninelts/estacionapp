@@ -35,3 +35,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('main', function() {
+    return view('conductor');
+});
+
+Route::get('qr', function() {
+    return view('escanerqr');
+})->name("qr");

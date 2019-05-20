@@ -1,5 +1,5 @@
-<?php include_once '../includes/templates/head.php'; ?>
-<?php include_once '../includes/templates/header.php'; ?>
+<?php include_once 'includes/templates/head.php'; ?>
+<?php include_once 'includes/templates/header.php'; ?>
 
 <div class="container section  animated fadeIn slower">
     <div class="info-misreservas">
@@ -8,7 +8,7 @@
     </div>
     <div class="input-field s12 menu-reser">
         <a href="#modal1" class="boton modal-trigger" onclick="ocultarBotones()"><i class="fas fa-qrcode"></i> <span>Generar Reserva</span> </a>
-        <a href="#" class="boton"><i class="fas fa-search"></i> <span>Mostrar QR</span> </a>
+        <a href="{{route('qr')}}" class="boton"><i class="fas fa-search"></i> <span>Mostrar QR</span> </a>
         <a href="#" class="boton"><i class="fas fa-money-check-alt"></i> <span>Pagar Servicio</span> </a>
     </div>
 </div>
@@ -26,4 +26,4 @@
     </div>
 </div>
 
-<?php include_once '../includes/templates/footer.php'; ?>
+<?php include_once 'includes/templates/footer.php'; ?>

@@ -5,6 +5,7 @@
 </nav>
 <section class="container section animated fadeIn slower">
     <form action="{{route('registro_auto_post')}}" method="POST">
+        @csrf
         <h4>Registro Automovil</h4>
         <div class="col s12">
             <div class="row">
@@ -15,18 +16,18 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <select>
-                               <option value="" disabled selected>Elija marca</option>
+                    <select name="marca_auto">
+                    <!-- <option value="" disabled selected>Elija marca</option> -->
                         @foreach($marcas as $marcas1) 
-                    <option value="{{$marcas1->nom_marca}}"> {{$marcas1->nom_marca}}</option>
+                    <option value="{{$marcas1->id_marca}}"> {{$marcas1->nom_marca}}</option>
                         @endforeach
-                 
                     </select>
+
                     <label>Marca Auto</label>
                 </div>
 
                 <div class="input-field col s6">
-                    <select>
+                    <select name="tipo_auto">
                     
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
@@ -37,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <select>
+                    <select name="modelo_auto">
                         <option value="" disabled selected>Elija Modelo</option>
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
