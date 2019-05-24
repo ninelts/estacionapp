@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistroValidacionRequest;
 use App\models\usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 
 
 class RegistroController extends Controller
@@ -34,14 +36,14 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegistroValidacionRequest $request )
     {
         //$request->all(); 
         
         // 1- se llama al modelo usuario 
         // 2- se crea el objeto usuario enfocado en el modelo usuario
         // 3- 
-         try {
+         
 
         $usuario = new usuario();
         $usuario->rut_usu  = $request->input('txtRut');
@@ -51,15 +53,12 @@ class RegistroController extends Controller
         $usuario->contr_usu   = Hash::make($request->input('txtContrasena'));
         $usuario->telefono_usu  = $request->input('txtTelefono');
         $usuario->nacimiento_usu = $request->input('txtNacimiento');
+
         $usuario -> save();
         return redirect()->route('registro-auto');
 
         // Validate the value...
-    } catch (Exception $e) {
-        report($e);
 
-        return back();
-    }
 
 
         

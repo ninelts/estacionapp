@@ -8,7 +8,8 @@ class usuario extends Model
 {
     protected $table = 'usuarios';
     protected $guarded = ['id_tipo_usu'];
- 	 protected $fillable = [
+ 	 
+ 	protected $fillable = [
  		'rut_usu',
  		'nom_usu',
  		'ape_usu',

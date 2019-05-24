@@ -5,38 +5,58 @@
 </nav>
 <section class="container section animated fadeIn slower">
     <form action="{{route('registro_guardar')}}" method="POST">
+       
         @csrf
         <h4>Registro Conductor</h4>
         <div class="col s12">
             <div class="row">
+                @if ($errors->any())
+
+             <div class="validate">
+        <ul>
+            @foreach ($errors->all() as $errores)
+                <li>{{$errores}}</li>
+            @endforeach
+        </ul>
+    </div>
+                @endif
+
                 <div class="input-field col s12">
-                    <input id="rut" type="number" name="txtRut" class="validate">
+               
+                    <input id="rut" type="number" name="txtRut" class="validate" value="{{old('txtRut')}}">
                     <label for="rut">Rut</label>
+                    @if($errores->has('txtRut'))
+
+                    <span class="invalid-feedback"> 
+                        <strong>{{$errores->first('txtRut')}} </strong>
+
+                    </span>
+                    @endif
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="nombre" type="text" name="txtNombre" class="validate">
+                    <input id="nombre" type="text" name="txtNombre" class="validate" value="{{old('txtNombre')}}">
                     <label for="nombre">Nombre</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="apellido" type="text" name="txtApellido" class="validate">
+                    <input id="apellido" type="text" name="txtApellido" class="validate" value="{{old('txtApellido')}}">
                     <label for="apellido">Apellido</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="correo" type="email" name="txtCorreo" class="validate">
+                    <input id="correo" type="email" name="txtCorreo" class="validate" value="{{old('txtCorreo')}}">
                     <label for="correo">Correo</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="telefono" type="tel" name="txtTelefono" class="validate">
+                    <input id="telefono" type="tel" name="txtTelefono" class="validate" value="{{old('txtTelefono')}}">
                     <label for="telefono">Telefono</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="fecha_nac" type="date" name="txtNacimiento" class="validate">
+                    <input id="fecha_nac" type="date" name="txtNacimiento" class="validate" value="{{'txtNacimiento'}}">
                     <label for="fecha_nac">Fecha Nacimiento</label>
                 </div>
             </div>
@@ -54,6 +74,7 @@
                     <input class="boton btn-registro" type="submit" value="Guardar">
                 </div>
         </div>
+
     </form>
 </section>
 

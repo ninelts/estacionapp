@@ -38,7 +38,7 @@
 
       <div class="modal-content center">
         <h5 class="modal-close" onclick="mostrarBotones()">X</h5>
-        <form class="form-login" action="#">
+        <form class="form-login" action="" method="POST">
           <h4>Inicio Sesion</h4>
 
           <div class="input-field s12">
