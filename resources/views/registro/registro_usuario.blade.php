@@ -10,44 +10,39 @@
         <h4>Registro Conductor</h4>
         <div class="col s12">
             <div class="row">
-                @if ($errors->any())
-
-             <div class="validate">
-        <ul>
-            @foreach ($errors->all() as $errores)
-                <li>{{$errores}}</li>
-            @endforeach
-        </ul>
-    </div>
-                @endif
 
                 <div class="input-field col s12">
-               
+     
                     <input id="rut" type="number" name="txtRut" class="validate" value="{{old('txtRut')}}">
                     <label for="rut">Rut</label>
-                    @if($errores->has('txtRut'))
-
-                    <span class="invalid-feedback"> 
-                        <strong>{{$errores->first('txtRut')}} </strong>
-
-                    </span>
-                    @endif
+                                @foreach ($errors->get('txtRut') as $error)
+                                            <li>{{ $error }}</li>
+                                @endforeach
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
                     <input id="nombre" type="text" name="txtNombre" class="validate" value="{{old('txtNombre')}}">
                     <label for="nombre">Nombre</label>
+                                @foreach ($errors->get('txtNombre') as $error)
+                                            <li style='color: red'>{{ $error }}</li>
+                                @endforeach
                 </div>
                 <div class="input-field col s6">
                     <input id="apellido" type="text" name="txtApellido" class="validate" value="{{old('txtApellido')}}">
                     <label for="apellido">Apellido</label>
+                                @foreach ($errors->get('txtApellido') as $error)
+                                            <li style='color: red' >{{ $error }}</li>
+                                @endforeach
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="correo" type="email" name="txtCorreo" class="validate" value="{{old('txtCorreo')}}">
                     <label for="correo">Correo</label>
+                          @foreach ($errors->get('txtCorreo') as $error)
+                                            <li style='color: red' >{{ $error }}</li>
+                                @endforeach
                 </div>
             </div>
             <div class="row">

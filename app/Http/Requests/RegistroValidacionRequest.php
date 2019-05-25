@@ -13,7 +13,7 @@ class RegistroValidacionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,6 @@ class RegistroValidacionRequest extends FormRequest
      *
      * @return array
      */
-   */
     public function rules()
     {
         return [
@@ -58,7 +57,3 @@ public function messages()
 
 }
 
-
-
-
-}
