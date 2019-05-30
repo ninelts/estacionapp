@@ -14,49 +14,30 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `estacionaPP` DEFAULT CHARACTER SET utf8 ;
+USE `estacionaPP` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`TIPO_USUARIO`
+-- Table `estacionaPP`.`USUARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`TIPO_USUARIO` (
-  'id_tablatipousu' INT AUTO_INCREMENT,
-  `id_tipousu` INT NOT NULL, /* se cambia y se establece por defecto en 0 - user - usuario normal*/
-  `nom_tipousu` VARCHAR(45) NOT NULL,
-  `descr_tipousu` VARCHAR(45) NOT NULL,
-  UNIQUE INDEX `rut_EMPLEADO_UNIQUE` (`id_tipousu` ASC) ,
-  PRIMARY KEY (`id_tablatipousu`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`USUARIO`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`USUARIO` (
   `rut_usu` INT NOT NULL,
   `nom_usu` VARCHAR(45) NOT NULL,
   `ape_usu` VARCHAR(45) NOT NULL,
   `correo_usu` VARCHAR(45) NOT NULL,
   `dir_usu` VARCHAR(45) NOT NULL,
-  `fecha_usu` DATE NOT NULL /*fecha nacimiento usuario*/,
+  `fecha_usu` DATE NOT NULL,
   `contr_usu` VARCHAR(45) NOT NULL,
-  `id_tipousu` INT NOT NULL AUTO_INCREMENT,
+  `id_tipousu` INT NOT NULL DEFAULT 1,
   UNIQUE INDEX `rut_EMPLEADO_UNIQUE` (`rut_usu` ASC) ,
-  PRIMARY KEY (`rut_usu`),
-  UNIQUE INDEX `id_tipousu_UNIQUE` (`id_tipousu` ASC) ,
-  CONSTRAINT `fk_id_tipousu`
-    FOREIGN KEY (`id_tipousu`)
-    REFERENCES `mydb`.`TIPO_USUARIO` (`id_tipousu`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`rut_usu`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CODIGO_QR`
+-- Table `estacionaPP`.`CODIGO_QR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CODIGO_QR` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`CODIGO_QR` (
   `id_codqr` INT NOT NULL AUTO_INCREMENT,
   `cont_qr` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id_codqr`))
@@ -64,9 +45,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TARIFA`
+-- Table `estacionaPP`.`TARIFA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`TARIFA` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`TARIFA` (
   `id_tarif` INT NOT NULL AUTO_INCREMENT,
   `nom_tarif` VARCHAR(45) NOT NULL,
   `descr_tarif` VARCHAR(45) NOT NULL,
@@ -77,9 +58,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TIPO_PAGO`
+-- Table `estacionaPP`.`TIPO_PAGO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`TIPO_PAGO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`TIPO_PAGO` (
   `id_tipopago` INT NOT NULL AUTO_INCREMENT,
   `nom_tipopago` VARCHAR(45) NOT NULL,
   `det_tipopago` VARCHAR(45) NOT NULL,
@@ -90,9 +71,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PAGO`
+-- Table `estacionaPP`.`PAGO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PAGO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`PAGO` (
   `id_pago` INT NOT NULL,
   `nom_pago` VARCHAR(45) NOT NULL,
   `id_tipopago` INT NOT NULL AUTO_INCREMENT,
@@ -101,16 +82,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PAGO` (
   UNIQUE INDEX `id_tipopago_UNIQUE` (`id_tipopago` ASC) ,
   CONSTRAINT `fk_id_tipopago`
     FOREIGN KEY (`id_tipopago`)
-    REFERENCES `mydb`.`TIPO_PAGO` (`id_tipopago`)
+    REFERENCES `estacionaPP`.`TIPO_PAGO` (`id_tipopago`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TIPO_RESERVA`
+-- Table `estacionaPP`.`TIPO_RESERVA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`TIPO_RESERVA` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`TIPO_RESERVA` (
   `id_tiporeserv` INT NOT NULL AUTO_INCREMENT,
   `nom_tiporeserv` VARCHAR(45) NOT NULL,
   `descr_tiporeserv` VARCHAR(45) NOT NULL,
@@ -120,9 +101,9 @@ COMMENT = '	';
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`DETALLE_SERVICIO`
+-- Table `estacionaPP`.`DETALLE_SERVICIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`DETALLE_SERVICIO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`DETALLE_SERVICIO` (
   `id_detserv` INT NOT NULL,
   `horainicio_detserv` TIME NOT NULL,
   `horatermino_detser` TIME NOT NULL,
@@ -134,9 +115,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`SECCION_PLAZA`
+-- Table `estacionaPP`.`SECCION_PLAZA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`SECCION_PLAZA` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`SECCION_PLAZA` (
   `id_seccionplaza` INT NOT NULL AUTO_INCREMENT,
   `nom_seccionplaza` INT NOT NULL,
   PRIMARY KEY (`id_seccionplaza`),
@@ -145,9 +126,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PLAZA`
+-- Table `estacionaPP`.`PLAZA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PLAZA` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`PLAZA` (
   `id_plaza` INT NOT NULL AUTO_INCREMENT,
   `num_plaza` INT NOT NULL,
   `est_plaza` TINYINT(1) NOT NULL,
@@ -157,16 +138,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PLAZA` (
   INDEX `fk_id_seccionplaza_idx` (`id_seccionplaza` ASC) ,
   CONSTRAINT `fk_id_seccionplaza`
     FOREIGN KEY (`id_seccionplaza`)
-    REFERENCES `mydb`.`SECCION_PLAZA` (`id_seccionplaza`)
+    REFERENCES `estacionaPP`.`SECCION_PLAZA` (`id_seccionplaza`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`RESERVA`
+-- Table `estacionaPP`.`RESERVA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`RESERVA` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`RESERVA` (
   `id_reserv` INT NOT NULL,
   `fecha_reserv` DATE NOT NULL,
   `hora_reserv` TIME NULL,
@@ -188,46 +169,46 @@ CREATE TABLE IF NOT EXISTS `mydb`.`RESERVA` (
   UNIQUE INDEX `id_plaza_UNIQUE` (`id_plaza` ASC) ,
   CONSTRAINT `fk_id_tarif`
     FOREIGN KEY (`id_tarif`)
-    REFERENCES `mydb`.`TARIFA` (`id_tarif`)
+    REFERENCES `estacionaPP`.`TARIFA` (`id_tarif`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_rut_usu`
     FOREIGN KEY (`rut_usu`)
-    REFERENCES `mydb`.`USUARIO` (`rut_usu`)
+    REFERENCES `estacionaPP`.`USUARIO` (`rut_usu`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_pago`
     FOREIGN KEY (`id_pago`)
-    REFERENCES `mydb`.`PAGO` (`id_pago`)
+    REFERENCES `estacionaPP`.`PAGO` (`id_pago`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_tiporeserv`
     FOREIGN KEY (`id_tiporeserv`)
-    REFERENCES `mydb`.`TIPO_RESERVA` (`id_tiporeserv`)
+    REFERENCES `estacionaPP`.`TIPO_RESERVA` (`id_tiporeserv`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_detserv`
     FOREIGN KEY (`id_detserv`)
-    REFERENCES `mydb`.`DETALLE_SERVICIO` (`id_detserv`)
+    REFERENCES `estacionaPP`.`DETALLE_SERVICIO` (`id_detserv`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_codqr`
     FOREIGN KEY (`id_codqr`)
-    REFERENCES `mydb`.`CODIGO_QR` (`id_codqr`)
+    REFERENCES `estacionaPP`.`CODIGO_QR` (`id_codqr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_plaza`
     FOREIGN KEY (`id_plaza`)
-    REFERENCES `mydb`.`PLAZA` (`id_plaza`)
+    REFERENCES `estacionaPP`.`PLAZA` (`id_plaza`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`MODELO_TIPO_AUTO`
+-- Table `estacionaPP`.`MODELO_TIPO_AUTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`MODELO_TIPO_AUTO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`MODELO_TIPO_AUTO` (
   `id_mod` INT NOT NULL,
   `nom_mod` VARCHAR(45) NOT NULL,
   `tipo_mod` VARCHAR(45) NOT NULL,
@@ -237,9 +218,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`MARCA`
+-- Table `estacionaPP`.`MARCA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`MARCA` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`MARCA` (
   `id_marca` INT NOT NULL AUTO_INCREMENT,
   `nom_marca` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_marca`),
@@ -248,9 +229,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`AUTO`
+-- Table `estacionaPP`.`AUTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`AUTO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`AUTO` (
   `pat_auto` VARCHAR(6) NOT NULL,
   `id_mod` INT NOT NULL,
   `id_marca` INT NOT NULL AUTO_INCREMENT,
@@ -260,36 +241,33 @@ CREATE TABLE IF NOT EXISTS `mydb`.`AUTO` (
   UNIQUE INDEX `id_marca_UNIQUE` (`id_marca` ASC) ,
   CONSTRAINT `fk_id_mod`
     FOREIGN KEY (`id_mod`)
-    REFERENCES `mydb`.`MODELO_TIPO_AUTO` (`id_mod`)
+    REFERENCES `estacionaPP`.`MODELO_TIPO_AUTO` (`id_mod`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_marca`
     FOREIGN KEY (`id_marca`)
-    REFERENCES `mydb`.`MARCA` (`id_marca`)
+    REFERENCES `estacionaPP`.`MARCA` (`id_marca`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`USUARIO-AUTO`
+-- Table `estacionaPP`.`USUARIO-AUTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO-AUTO` (
+CREATE TABLE IF NOT EXISTS `estacionaPP`.`USUARIO_AUTO` (
   `id_autousu` INT NOT NULL AUTO_INCREMENT,
   `rut_usu` INT NOT NULL,
   `pat_auto` VARCHAR(6) NOT NULL,
   PRIMARY KEY (`id_autousu`),
-  UNIQUE INDEX `id_autousu_UNIQUE` (`id_autousu` ASC) ,
-  UNIQUE INDEX `id_usu_UNIQUE` (`rut_usu` ASC) ,
-  UNIQUE INDEX `pat_auto_UNIQUE` (`pat_auto` ASC) ,
-  CONSTRAINT `fk_rut_usu`
+  CONSTRAINT `fk_rut_usu_auto`
     FOREIGN KEY (`rut_usu`)
-    REFERENCES `mydb`.`USUARIO` (`rut_usu`)
+    REFERENCES `estacionaPP`.`USUARIO` (`rut_usu`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pat_auto`
     FOREIGN KEY (`pat_auto`)
-    REFERENCES `mydb`.`AUTO` (`pat_auto`)
+    REFERENCES `estacionaPP`.`AUTO` (`pat_auto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
