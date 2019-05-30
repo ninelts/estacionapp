@@ -91,7 +91,7 @@ CREATE TABLE `MODEL` (
 CREATE TABLE `PAYMENT` (
   `id_payment` int(11) NOT NULL,
   `name_payment` varchar(45) NOT NULL,
-  `id_typepayment` int(11) NOT NULL
+  `id_paytype` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -197,8 +197,30 @@ CREATE TABLE `USER` (
 -- Dumping data for table `USUARIO`
 --
 
-INSERT INTO `USER` (`id_user`, `name_user`, `lstnane_user`, `email`, `password`, `phone_user`, `borndate_user`, `updated_at`, `created_at`, `id_typeuser`) VALUES
-(19461893, 'Fernando', 'Joost', 'fjoostr@gmail.com', '$2y$10$.Hn5nHNnCIMPsfhhaH3YWOB5kbriVk3chZICwsMdLodLe5DbABHhK', 944175966, '1997-04-07', '2019-05-24 07:15:56', '2019-05-24 07:15:56', 1);
+INSERT INTO `USER`(
+    `id_user`,
+    `name_user`,
+    `lstname_user`,
+    `email`,
+    `password`,
+    `phone`,
+    `borndate_user`,
+    `updated_at`,
+    `created_at`,
+    `id_usertype`
+)
+VALUES(
+    19461893,
+    'Fernando',
+    'Joost',
+    'fjoostr@gmail.com',
+    '$2y$10$.Hn5nHNnCIMPsfhhaH3YWOB5kbriVk3chZICwsMdLodLe5DbABHhK',
+    944175966,
+    '1997-04-07',
+    '2019-05-24 07:15:56',
+    '2019-05-24 07:15:56',
+    1
+);
 
 -- --------------------------------------------------------
 
@@ -275,7 +297,7 @@ ALTER TABLE `RESERVE`
   ADD PRIMARY KEY (`id_reserve`),
   ADD UNIQUE KEY `id_reserve_UNIQUE` (`id_reserve`),
   ADD KEY `fk_id_tariff` (`id_tariff`),
-  ADD KEY `fk_id_user` (`id_user`),
+  ADD KEY `fk_id_user-reserve` (`id_user`),
   ADD KEY `fk_id_payment` (`id_payment`),
   ADD KEY `fk_id_tiporeserv` (`id_reservetype`),
   ADD KEY `fk_id_servdet` (`id_servdet`),
@@ -322,7 +344,7 @@ ALTER TABLE `USER`
 --
 ALTER TABLE `USER_CAR`
   ADD PRIMARY KEY (`id_usercar`),
-  ADD KEY `fk_id_user` (`id_user`),
+  ADD KEY `fk_id_user-car` (`id_user`),
   ADD KEY `fk_id_car` (`id_car`);
 
 --
@@ -422,20 +444,20 @@ ALTER TABLE `SEAT`
 -- Constraints for table `RESERVA`
 --
 ALTER TABLE `RESERVE`
-  ADD CONSTRAINT `fk_id_qrcode` FOREIGN KEY (`id_qrcode`) REFERENCES `CODIGO_QR` (`id_qrcode`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_id_qrcode` FOREIGN KEY (`id_qrcode`) REFERENCES `QR_CODE` (`id_qrcode`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_id_servdet` FOREIGN KEY (`id_servdet`) REFERENCES `SERVICE_DETAIL` (`id_servdet`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_id_payment` FOREIGN KEY (`id_payment`) REFERENCES `PAYMENT` (`id_payment`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_id_seat` FOREIGN KEY (`id_seat`) REFERENCES `SEAT` (`id_seat`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_id_tariff` FOREIGN KEY (`id_tariff`) REFERENCES `TARIFF` (`id_tariff`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_id_reservetype` FOREIGN KEY (`id_reservetype`) REFERENCES `RESERVE_TYPE` (`id_reservetype`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `USER` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_id_user-reserve` FOREIGN KEY (`id_user`) REFERENCES `USER` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `USUARIO_AUTO`
 --
 ALTER TABLE `USER_CAR`
   ADD CONSTRAINT `fk_id_car` FOREIGN KEY (`id_car`) REFERENCES `CAR` (`id_car`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `USER` (`rut_usu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_id_user-car` FOREIGN KEY (`id_user`) REFERENCES `USER` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
