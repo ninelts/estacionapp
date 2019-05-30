@@ -11,17 +11,17 @@ class usuario extends \Eloquent implements Authenticatable
     use AuthenticableTrait;
     // ...
 
-    protected $table = 'usuarios';
-    protected $guarded = ['id_tipo_usu'];
+    protected $table = 'USER';
+    protected $guarded = ['id_usertype'];
  	 
  	protected $fillable = [
- 		'rut_usu',
- 		'nom_usu',
- 		'ape_usu',
- 		'correo_usu',
+ 		'id_user',
+ 		'name_user',
+ 		'lstname_user',
+ 		'email',
  		'password',
- 		'telefono_usu',
- 		'nacimiento_usu'
+ 		'phone',
+ 		'borndate_user'
 
  	];
 }

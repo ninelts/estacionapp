@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-     if ( Auth::attempt(['rut_usu'=>$request->txt_rut,'password'=>$request->contr_usu])){
+     if ( Auth::attempt(['id_user'=>$request->txt_rut,'password'=>$request->contr_usu])){
 
         return response()->json( [ 'success' => true, 'message' => 'Acceso satisfactorio' ] );
 
@@ -51,7 +51,7 @@ use AuthenticatesUsers;
     }
       public function username()
     {
-        return 'rut_usu';
+        return 'id_user';
     }
 
 }
