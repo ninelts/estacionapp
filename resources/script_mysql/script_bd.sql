@@ -197,7 +197,7 @@ CREATE TABLE `USER` (
 -- Dumping data for table `USUARIO`
 --
 
-INSERT INTO `USUARIO` (`id_user`, `name_user`, `lstnane_user`, `email`, `password`, `phone_user`, `borndate_user`, `updated_at`, `created_at`, `id_typeuser`) VALUES
+INSERT INTO `USER` (`id_user`, `name_user`, `lstnane_user`, `email`, `password`, `phone_user`, `borndate_user`, `updated_at`, `created_at`, `id_typeuser`) VALUES
 (19461893, 'Fernando', 'Joost', 'fjoostr@gmail.com', '$2y$10$.Hn5nHNnCIMPsfhhaH3YWOB5kbriVk3chZICwsMdLodLe5DbABHhK', 944175966, '1997-04-07', '2019-05-24 07:15:56', '2019-05-24 07:15:56', 1);
 
 -- --------------------------------------------------------
