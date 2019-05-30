@@ -79,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `estacionaPP`.`PAGO` (
   `id_tipopago` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_pago`),
   UNIQUE INDEX `id_pago_UNIQUE` (`id_pago` ASC) ,
-  UNIQUE INDEX `id_tipopago_UNIQUE` (`id_tipopago` ASC) ,
   CONSTRAINT `fk_id_tipopago`
     FOREIGN KEY (`id_tipopago`)
     REFERENCES `estacionaPP`.`TIPO_PAGO` (`id_tipopago`)
@@ -160,13 +159,6 @@ CREATE TABLE IF NOT EXISTS `estacionaPP`.`RESERVA` (
   `id_plaza` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_reserv`),
   UNIQUE INDEX `id_RESERVA_UNIQUE` (`id_reserv` ASC) ,
-  UNIQUE INDEX `id_tarif_UNIQUE` (`id_tarif` ASC) ,
-  UNIQUE INDEX `rut_usu_UNIQUE` (`rut_usu` ASC) ,
-  UNIQUE INDEX `id_pago_UNIQUE` (`id_pago` ASC) ,
-  UNIQUE INDEX `id_tiporeserv_UNIQUE` (`id_tiporeserv` ASC) ,
-  UNIQUE INDEX `id_detserv_UNIQUE` (`id_detserv` ASC) ,
-  UNIQUE INDEX `id_qr_UNIQUE` (`id_codqr` ASC) ,
-  UNIQUE INDEX `id_plaza_UNIQUE` (`id_plaza` ASC) ,
   CONSTRAINT `fk_id_tarif`
     FOREIGN KEY (`id_tarif`)
     REFERENCES `estacionaPP`.`TARIFA` (`id_tarif`)
@@ -237,8 +229,6 @@ CREATE TABLE IF NOT EXISTS `estacionaPP`.`AUTO` (
   `id_marca` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`pat_auto`),
   UNIQUE INDEX `patenteVehiculo_UNIQUE` (`pat_auto` ASC) ,
-  UNIQUE INDEX `id_mod_UNIQUE` (`id_mod` ASC) ,
-  UNIQUE INDEX `id_marca_UNIQUE` (`id_marca` ASC) ,
   CONSTRAINT `fk_id_mod`
     FOREIGN KEY (`id_mod`)
     REFERENCES `estacionaPP`.`MODELO_TIPO_AUTO` (`id_mod`)
