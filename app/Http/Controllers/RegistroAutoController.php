@@ -16,7 +16,7 @@ class RegistroAutoController extends Controller
     public function index()
     {
 
-          $marcas = DB::select('select * from MARCA'); //Tipo 2 
+          $marcas = DB::select('select * from BRAND'); //Tipo 2 
      //   $marcas = marcas::all(); //Se llama al modelo marcas Tipo 1
 
         return view('registro.registro_auto' , compact('marcas'));  //Compact trae los datos de la base de datos y los envia a la vista

@@ -1,5 +1,5 @@
-<?php include_once '../includes/templates/head.php'; ?>
-<?php include_once '../includes/templates/header.php'; ?>
+<?php include_once 'includes/templates/head.php'; ?>
+<?php include_once 'includes/templates/header.php'; ?>
 
 <div class="container section  animated fadeIn slower">
     <div class="info-misreservas">
@@ -13,4 +13,4 @@
 </div>
 
 
-<?php include_once '../includes/templates/footer.php'; ?>
+<?php include_once 'includes/templates/footer.php'; ?>

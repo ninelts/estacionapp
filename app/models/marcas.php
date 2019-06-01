@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class marcas extends Model
 {
-	protected $table='MARCA';
+	protected $table='BRAND';
 	protected $fillable = [
-			'nom_marca'
-	]
+			'name_brand'
+	];
 }

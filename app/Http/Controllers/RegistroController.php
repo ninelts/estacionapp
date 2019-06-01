@@ -46,13 +46,13 @@ class RegistroController extends Controller
        
 
         $usuario = new usuario();
-        $usuario->rut_usu  = $request->input('txtRut');
-        $usuario->nom_usu = $request->input('txtNombre');
-        $usuario->ape_usu = $request->input('txtApellido');
-        $usuario->correo_usu =$request->input('txtCorreo');
+        $usuario->id_user  = $request->input('txtRut');
+        $usuario->name_user = $request->input('txtNombre');
+        $usuario->lstname_user = $request->input('txtApellido');
+        $usuario->email =$request->input('txtCorreo');
         $usuario->password   = Hash::make($request->input('txtContrasena'));
-        $usuario->telefono_usu  = $request->input('txtTelefono');
-        $usuario->nacimiento_usu = $request->input('txtNacimiento');
+        $usuario->phone  = $request->input('txtTelefono');
+        $usuario->borndate_user = $request->input('txtNacimiento');
 
         $usuario -> save();
         return redirect()->route('registro-auto');

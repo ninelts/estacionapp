@@ -24,7 +24,7 @@ class RegistroValidacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtRut'        => 'required|unique:usuarios,rut_usu|bail|digits:9',
+            'txtRut'        => 'required|unique:USER,id_user|bail|digits:9',
             'txtNombre'     => 'required|alpha|min:3|max:30',
             'txtApellido'   => 'required|alpha|min:4|max:255',
             'txtCorreo'     => 'required|max:255|email',

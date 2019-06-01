@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class auto extends Model
 {
-    protected $table = 'autos';
+    protected $table = 'CAR';
    	public $timestamps = false;
 }
 
