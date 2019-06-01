@@ -20,7 +20,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-      public function username()
+    public function username()
     {
         return 'rut_usu';
     }
@@ -47,19 +47,13 @@ class LoginController extends Controller
          * FALTA AGREGAR COLUMNA DE ESTADO USUARIO
          */
 
-     if ( Auth::attempt(['rut_usu'=>$request->txt_rut,'password'=>$request->contr_usu])){
 
-        // return response()->json( [ 'success' => true, 'message' => 'Acceso satisfactorio' ] );
+        } else {
+            return back();
+        }
 
-        return view('conductor');
-
-
-
-    } else {
-        return back()->with('status','Lo Sentimos los datos ingresados son invalidos intente nuevamente');
     }
-    }
-}
+
 
 use AuthenticatesUsers;
 
