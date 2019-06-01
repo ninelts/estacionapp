@@ -13,33 +13,35 @@
 /*	METODOS   
 	STORE = CREA LAS INCERSIONES 
 	INDEX = REDIRIGE A LAS VISTAS POR DEFECTO SEGUN SU URL
-	
+                                                                                             	
 	*/
 
-Auth::routes();
+	//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function() {return view('inicio');})->name('inicio'); //Redireccion a pagina Principal
+	Route::get('/', function() {return view('inicio');})->name('inicio'); //Redireccion a pagina Principal
 
-Route::post('login1','Auth\LoginController@authenticate')->name('login');
-
-Route::get('/registro','RegistroController@index' )->name('registro'); //redirecciona a metodo index
-
-Route::post('registro','RegistroController@store')->name('registro_guardar'); //Guarda usuario en base de datos
-
-Route::get('registro/automovil','RegistroAutoController@index')->name('registro-auto');
-
-Route::post('registro/automovil','RegistroAutoController@store')->name('registro_auto_post');
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+<<<<<<< HEAD
 Route::get('conductor', function() {
     return view('conductor');
 })->name('conductor');
 Route::get('recepcion', function() {
     return view('recepcion');
 })->name('recepcion');
+=======
+	Route::post('login','Auth\LoginController@authenticate')->name('login');
+	
+	Route::get('/registro','RegistroController@index' )->name('registro'); //redirecciona a metodo index
+
+	Route::post('registro','RegistroController@store')->name('registro_guardar'); //Guarda usuario en base de datos
+
+	Route::get('registro/automovil','RegistroAutoController@index')->name('registro-auto');
+
+	Route::post('registro/automovil','RegistroAutoController@store')->name('registro_auto_post');
+
+	Route::get('MostrarQR', function() {return view('escanerqr');})->name('QR');
+
+	Route::get('/index', function() {return view('conductor');})->name('index'); //Ver sessiones
+
+>>>>>>> ccfe2c32b5b0239ca0c27ce460db1465d4fe0ebd

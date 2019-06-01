@@ -55,7 +55,7 @@ class RegistroController extends Controller
         $usuario->borndate_user = $request->input('txtNacimiento');
 
         $usuario -> save();
-        return redirect()->route('registro-auto');
+        return redirect()->route('registro')->with('status','Se ha Registrado con Exito');
 
         // Validate the value...
 

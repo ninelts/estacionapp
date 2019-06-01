@@ -22,11 +22,13 @@
 </head>
 
 <body class="animated fadeIn slower">
+
   <div id="cabecera">
     <div class="video">
 
       <video src="video/bg-login-movil.mp4" autoplay loop muted playsinline></video>
     </div>
+
 
     <div class="botones">
       <a href="#login" class="boton modal-trigger" onclick="ocultarBotones()">Iniciar Sesión</a>
@@ -42,6 +44,11 @@
           <form class="form-login" action="{{route('login')}}" method="POST">
             @csrf
             <h4>Inicio Sesion</h4>
+              @if(session('status'))
+                <div class="mensaje-error">
+                  <p class="center">{{session('status')}}</p>
+                </div> 
+              @endif
             <div class="input-field s12">
               <i class="material-icons prefix">persona</i>
               <input name="txt_rut" type="text" id="username">
