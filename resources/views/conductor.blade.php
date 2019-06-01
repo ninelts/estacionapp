@@ -8,11 +8,11 @@
     </div>
     <div class="input-field s12 menu-reser">
         <a href="#modal1" class="boton modal-trigger" onclick="ocultarBotones()"><i class="fas fa-qrcode"></i> <span>Generar Reserva</span> </a>
-<<<<<<< HEAD
+
         <a href="" class="boton"><i class="fas fa-search"></i> <span>Mostrar QR</span> </a>
-=======
+
         <a href="{{route('QR')}}" class="boton"><i class="fas fa-search"></i> <span>Mostrar QR</span> </a>
->>>>>>> ccfe2c32b5b0239ca0c27ce460db1465d4fe0ebd
+
         <a href="#" class="boton"><i class="fas fa-money-check-alt"></i> <span>Pagar Servicio</span> </a>
     </div>
 </div>

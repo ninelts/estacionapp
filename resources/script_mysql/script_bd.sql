@@ -20,8 +20,9 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `estacionaPP`
---
-
+-- 
+create database estacionaPP;
+use estacionaPP;
 -- --------------------------------------------------------
 
 --
