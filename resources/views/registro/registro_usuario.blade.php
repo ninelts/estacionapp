@@ -4,6 +4,13 @@
     <a href="{{route('inicio')}}" class="back-page left"><i class="fas fa-arrow-left"></i></a>
 </nav>
 <section class="container section animated fadeIn slower">
+
+      @if(session('status'))
+      <div class="center"> 
+       <h1 style="color: green"> {{session('status')}}</h1>
+      </div>
+
+    @endif
     <form action="{{route('registro_guardar')}}" method="POST">
 
         @csrf

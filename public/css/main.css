@@ -267,12 +267,15 @@ body {
 }
 
 
+
+
 /****** MODAL LOGIN ******/
 
 .modal {
     width: 90%;
     background-color: var(--secundario) opacity(1) !important;
     border-radius: 1rem !important;
+    height: 100vh !important;
 }
 
 .form-login {
@@ -334,6 +337,9 @@ form .link:hover {
     color: var(--primario);
 }
 
+.mensaje-error{
+    color: var(--texto1);
+}
 
 /********* RESERVAS CONDUCTOR ***************/
 

@@ -18,15 +18,24 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+      public function username()
+    {
+        return 'rut_usu';
+    }
 
     public function authenticate(Request $request)
     {
+
      if ( Auth::attempt(['rut_usu'=>$request->txt_rut,'password'=>$request->contr_usu])){
 
-        return response()->json( [ 'success' => true, 'message' => 'Acceso satisfactorio' ] );
+        // return response()->json( [ 'success' => true, 'message' => 'Acceso satisfactorio' ] );
+
+        return view('conductor');
+
+
 
     } else {
-        return response()->json( [ 'success' => false, 'message' => 'Incorrecto' ] );
+        return back()->with('status','Lo Sentimos los datos ingresados son invalidos intente nuevamente');
     }
     }
 
@@ -49,9 +58,6 @@ use AuthenticatesUsers;
     {
         $this->middleware('guest')->except('logout');
     }
-      public function username()
-    {
-        return 'rut_usu';
-    }
+
 
 }
