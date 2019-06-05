@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\DB;
-use App\models\usuario;
 
 class LoginController extends Controller
 {
@@ -20,49 +17,19 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    public function username()
+
+    use AuthenticatesUsers;
+     public function username()
     {
-        return 'rut_usu';
+        return 'rut';
     }
-
-    public function authenticate(Request $request)
-    {
-     if ( Auth::attempt(['id_user'=>$request->txt_rut,'password'=>$request->contr_usu])){
-        $id_usuario = $request->txt_rut;
-        //return response()->json( [ 'success' => true, 'message' => 'Acceso satisfactorio' ] );
-        $tipo_usuario = DB::table('USER')->where('id_user', $id_usuario)->first();
-        $var_tipo_usuario = $tipo_usuario ->id_usertype;
-        //return response()-> json($var_tipo_usuario);
-        if($var_tipo_usuario==1){
-            return redirect()->route('conductor');
-        }
-        else{
-            return redirect()->route('recepcion');
-        }
-
-        
-
-        /**crear la sesion con los datos del id_usertype
-         * despues redirigir dependiendo del tipo de usuario a vista conductor o vista recepcionista
-         * FALTA AGREGAR COLUMNA DE ESTADO USUARIO
-         */
-
-
-        } else {
-            return back();
-        }
-
-    }
-
-
-use AuthenticatesUsers;
-
+      
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/conductor';
 
     /**
      * Create a new controller instance.
@@ -73,7 +40,4 @@ use AuthenticatesUsers;
     {
         $this->middleware('guest')->except('logout');
     }
-
-
-
 }

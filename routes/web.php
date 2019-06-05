@@ -10,37 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*	METODOS   
-	STORE = CREA LAS INCERSIONES 
-	INDEX = REDIRIGE A LAS VISTAS POR DEFECTO SEGUN SU URL
-                                                                                             	
-	*/
 
-	//Auth::routes();
+Route::get('/', function () {
+    return view('estacionapp.inicio');
+})->name('inicio')->middleware('guest');
 
-	Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify' => true]);
 
-	Route::get('/', function() {return view('inicio');})->name('inicio'); //Redireccion a pagina Principal
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/registro', function() {
+    return view('estacionapp.registro.registro_usuario');
+})->name('registro');
 
 
-	Route::get('conductor', function() {
-		return view('conductor');
-	})->name('conductor');
-	Route::get('recepcion', function() {
-		return view('recepcion');
-	})->name('recepcion');
-
-	Route::post('login','Auth\LoginController@authenticate')->name('login');
-	
-	Route::get('/registro','RegistroController@index' )->name('registro'); //redirecciona a metodo index
-
-	Route::post('registro','RegistroController@store')->name('registro_guardar'); //Guarda usuario en base de datos
-
-	Route::get('registro/automovil','RegistroAutoController@index')->name('registro-auto');
-
-	Route::post('registro/automovil','RegistroAutoController@store')->name('registro_auto_post');
-
-	Route::get('MostrarQR', function() {return view('escanerqr');})->name('QR');
-
-	Route::get('/index', function() {return view('conductor');})->name('index'); //Ver sessiones
-
+Route::get('/conductor','conductorController@index')->name('conductor');

@@ -23,14 +23,15 @@ class RegistroValidacionRequest extends FormRequest
      */                     
     public function rules()
     {
-        return [
-            'txtRut'        => 'required|unique:USER,id_user|bail|digits:9',
+        return  [
+            'rut'           => 'required|unique:USER,id_user|bail|digits:9',
             'txtNombre'     => 'required|alpha|min:3|max:30',
             'txtApellido'   => 'required|alpha|min:4|max:255',
             'txtCorreo'     => 'required|max:255|email',
-            'txtContrasena' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
             'txtTelefono'   => 'required|digits:9',
-            'txtNacimiento' => 'required|date'
+            'txtNacimiento' => 'required|date',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'
             //
         ];
     }
@@ -42,10 +43,10 @@ class RegistroValidacionRequest extends FormRequest
 
         return [
 
-            'txtRut.required'           =>'El campo rut es obligatorio',
-            'txtRut.min'                =>'El campo rut debe contener 9 caracteres como minimo',
-            'txtRut.unique'             =>'El rut ya se encuentra registrado',
-            'txtRut.digits'             =>'El campo rut debe contener 9 digitos', 
+            'rut.required'              =>'El campo rut es obligatorio',
+            'rut.min'                   =>'El campo rut debe contener 9 caracteres como minimo',
+            'rut.unique'                =>'El rut ya se encuentra registrado',
+            'rut.digits'                =>'El campo rut debe contener 9 digitos', 
         //
             'txtNombre.alpha'           =>'El campo nombre solo puede contener letras',
             'txtNombre.required'        =>'El campo nombre es obligatorio',
