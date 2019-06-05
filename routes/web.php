@@ -30,6 +30,10 @@
 		return view('recepcion');
 	})->name('recepcion');
 
+	Route::get('login', function() {
+		return view('login');
+	})->name('login');
+
 	Route::post('login','Auth\LoginController@authenticate')->name('login');
 	
 	Route::get('/registro','RegistroController@index' )->name('registro'); //redirecciona a metodo index
