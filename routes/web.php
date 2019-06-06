@@ -29,10 +29,16 @@
 	Route::get('recepcion', function() {
 		return view('recepcion');
 	})->name('recepcion');
-
+	//rutas para hacer pruebas
 	Route::get('login', function() {
 		return view('login');
 	})->name('login');
+	Route::get('emailPassword', function() {
+		return view('emailContrasena');
+	})->name('emailPassword');
+	Route::get('resetPassword', function() {
+		return view('resetPassword');
+	})->name('resetPassword');
 
 	Route::post('login','Auth\LoginController@authenticate')->name('login');
 	
