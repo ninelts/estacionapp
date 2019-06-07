@@ -10,25 +10,38 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*	METODOS   
-	STORE = CREA LAS INCERSIONES 
-	INDEX = REDIRIGE A LAS VISTAS POR DEFECTO SEGUN SU URL
-                                                                                             	
-	*/
 
-	//Auth::routes();
+Route::get('/', function () {
+    return view('estacionapp.inicio');
+})->name('inicio')->middleware('guest');
 
-	Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify' => true]);
 
-	Route::get('/', function() {return view('inicio');})->name('inicio'); //Redireccion a pagina Principal
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/registro', function() {
+    return view('estacionapp.registro.registro_usuario');
+})->name('registro');
 
 
+<<<<<<< HEAD
+Route::get('/conductor','conductorController@index')->name('conductor');
+=======
 	Route::get('conductor', function() {
 		return view('conductor');
 	})->name('conductor');
 	Route::get('recepcion', function() {
 		return view('recepcion');
 	})->name('recepcion');
+	//rutas para hacer pruebas
+	Route::get('login', function() {
+		return view('login');
+	})->name('login');
+	Route::get('emailPassword', function() {
+		return view('emailContrasena');
+	})->name('emailPassword');
+	Route::get('resetPassword', function() {
+		return view('resetPassword');
+	})->name('resetPassword');
 
 	Route::post('login','Auth\LoginController@authenticate')->name('login');
 	
@@ -44,3 +57,4 @@
 
 	Route::get('/index', function() {return view('conductor');})->name('index'); //Ver sessiones
 
+>>>>>>> 4b88d8baea0b154781a976223a74ef935d7ea8d0

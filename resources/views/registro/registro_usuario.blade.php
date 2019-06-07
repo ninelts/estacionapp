@@ -82,8 +82,8 @@
                     <label for="cont-comf">Confirme Contraseña</label>
                 </div>
             </div>
-            <div class="input-field col s12">
-                <input class="boton btn-registro" type="submit" value="Guardar">
+            <div class="input-field col s12 center-align">
+                <button class="boton-submit waves-effect waves-light" type="submit" name="action">Guardar</button>
             </div>
         </div>
 

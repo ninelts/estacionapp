@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException; //Metodo para Poder usar la funcion autenticatedException
 
 class Handler extends ExceptionHandler
 {
@@ -46,10 +47,23 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-            return redirect('/'); //Variable para redirigir error 404 si no existe la pag a pagina principal
-        } 
         return parent::render($request, $exception);
+    }
 
+
+
+
+
+    protected function unauthenticated($request, AuthenticationException $exception) //Funcion del framework de laravel para redirigiar a paginas cuando el usuario no esta autenticado a una url por defecto
+    {
+        if($request->ajax())
+        {
+            return response([
+                "message" => "Unauthenticated.",
+                "data" => [],
+            ],401);
+        }
+
+        return redirect()->to('/');   
     }
 }
